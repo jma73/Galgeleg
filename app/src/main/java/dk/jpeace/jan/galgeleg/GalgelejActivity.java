@@ -143,11 +143,12 @@ public class GalgelejActivity extends Activity implements OnClickListener {
             if(gl.erSpilletTabt())
             {
                 Toast.makeText(this, "Spillet er tabt!!!", Toast.LENGTH_LONG).show();
-
+                Log.d("jj", "spillet er tabt!");
             }
             else if(gl.erSpilletVundet())
             {
                 Toast.makeText(this, "Spillet er vundet!!!", Toast.LENGTH_LONG).show();
+                Log.d("jj", "spillet er vundet!");
 
             }
         }

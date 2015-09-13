@@ -27,8 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="brugte bogstaver:"
         android:id="@+id/textView"
-        android:layout_alignBaseline="@+id/textViewSynligtOrd"
-        android:layout_alignBottom="@+id/textViewSynligtOrd"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -50,9 +49,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Gæt et bogstav"
         android:id="@+id/textView3"
-        android:layout_above="@+id/imageViewet"
+        android:layout_alignBottom="@+id/imageViewet"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="77dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -97,15 +97,14 @@
         android:text="&lt;ordet>"
         android:id="@+id/textViewOrdet"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textViewBrugteBogst"
-        android:layout_toStartOf="@+id/textViewBrugteBogst" />
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gæt bogstav"
         android:id="@+id/buttonGæt"
-        android:layout_below="@+id/textViewBrugteBogst"
+        android:layout_below="@+id/textViewSynligtOrd"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -123,12 +122,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextGætOrdet"
-        android:layout_marginBottom="33dp"
-        android:layout_alignBottom="@+id/buttonGætOrdet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp" />
+        android:layout_above="@+id/imageViewet"
+        android:layout_toRightOf="@+id/buttonGætOrdet"
+        android:layout_toEndOf="@+id/buttonGætOrdet" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -137,9 +133,8 @@
         android:text="Gæt ordet"
         android:id="@+id/buttonGætOrdet"
 
-        android:layout_alignTop="@+id/imageViewet"
+        android:layout_above="@+id/imageViewet"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="72dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
