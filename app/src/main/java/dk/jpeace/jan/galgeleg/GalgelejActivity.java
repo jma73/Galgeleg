@@ -64,11 +64,9 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         textViewFinishedStatus.setText("Vælg start spil.");
         textViewFinishedStatus.setTextColor(Color.DKGRAY);
 
-
         // disse skal egentlig slet ikke være med...
         buttonGætOrdet.setVisibility(View.INVISIBLE);
         editTextGætOrdet.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
@@ -116,7 +114,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void BogstavTest(Editable text) {
         String text1 = "Du tastede: " + text;
-        Toast.makeText(this, text1, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, text1, Toast.LENGTH_SHORT).show();
 
         textViewDebug.setText(text1);
 
@@ -222,5 +220,10 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         buttonSpil.setText("Nyt spil");
         buttonGæt.setEnabled(true);
         textViewFinishedStatus.setText("Spillet er i gang.");
+
+        textViewBrugteBogst.setText("");
+        textViewSynligtOrd.setText(galgelogik.getSynligtOrd());
     }
+
+
 }
