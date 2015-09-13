@@ -20,6 +20,8 @@ import java.util.ArrayList;
 public class GalgelejActivity extends Activity implements OnClickListener {
 
     Galgelogik gl;
+    private int guessCounter;
+    private int guessMax = 6;
 
     private Button buttonSpil;
     private TextView editviewTest;
@@ -30,22 +32,30 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     private TextView textViewDebug;
     private TextView textViewSynligtOrd;
     private TextView textViewBrugteBogst;
+    private Button buttonGætOrdet;
+    private EditText editTextGætOrdet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galgelej);
 
+        guessCounter = 0;
         editviewTest = (TextView)findViewById(R.id.textView);
         textView2Show = (TextView)findViewById(R.id.textViewOrdet);
         textViewDebug = (TextView)findViewById(R.id.textViewDebug);
         textViewSynligtOrd = (TextView)findViewById(R.id.textViewSynligtOrd);
         textViewBrugteBogst = (TextView)findViewById(R.id.textViewBrugteBogst);
+
         editTextBogstav = (EditText)findViewById(R.id.editTextBogstav);
+        editTextGætOrdet = (EditText)findViewById(R.id.editTextGætOrdet);
+
         buttonGæt = (Button) findViewById(R.id.buttonGæt);
         buttonSpil = (Button) findViewById(R.id.buttonSpil);
+        buttonGætOrdet = (Button) findViewById(R.id.buttonGætOrdet);
         buttonGæt.setOnClickListener(this);
         buttonSpil.setOnClickListener(this);
+        buttonGætOrdet.setOnClickListener(this);
 
         imageView1 =  (ImageView)findViewById(R.id.imageViewet);
         imageView1.setImageResource(R.drawable.forkert6);
@@ -81,6 +91,19 @@ public class GalgelejActivity extends Activity implements OnClickListener {
             StartSpil();
         if(v==buttonGæt)
             BogstavTest(editTextBogstav.getText());
+        if(v==buttonGætOrdet)
+            GætOrdet();
+
+    }
+
+    private void GætOrdet() {
+        // denne skal egentlig ikke med i den endelige løsning...
+        Editable gæt = editTextGætOrdet.getText();
+        if(gæt.toString().equals(gl.getOrdet()))
+            Toast.makeText(this, "Juhuuu - du gættede rigtigt!!!", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Neeej det er forkert!!! Ready to hang??? '" + gæt.toString() + "'", Toast.LENGTH_SHORT).show();
+
     }
 
     private void BogstavTest(Editable text) {
@@ -91,12 +114,16 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
         if(text.length() != 1)
         {
+            imageView1.setImageResource(R.drawable.forkert3);
+
             Log.d("jj", "det indtastede passer ikke. " + text1);
             Toast.makeText(this, "Fejl: Du skal taste præcis eet bogstav!", Toast.LENGTH_SHORT).show();
 
         }
         else
         {
+            imageView1.setImageResource(R.drawable.forkert5);
+
             gl.gætBogstav(text.toString());
             String syngligtOrd = gl.getSynligtOrd();
             textViewSynligtOrd.setText(syngligtOrd);
@@ -105,6 +132,57 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
             editTextBogstav.setText("");
         }
+
+        OpdaterGalgeBillede();
+        SpilStatus();
+
+    }
+
+    private void SpilStatus() {
+        if(gl.erSpilletSlut()) {
+            if(gl.erSpilletTabt())
+            {
+                Toast.makeText(this, "Spillet er tabt!!!", Toast.LENGTH_LONG).show();
+
+            }
+            else if(gl.erSpilletVundet())
+            {
+                Toast.makeText(this, "Spillet er vundet!!!", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }
+
+
+    private void OpdaterGalgeBillede()
+    {
+        int antalForkerte = gl.getAntalForkerteBogstaver();
+        Log.v("jj", (String.valueOf(antalForkerte)));
+        switch (antalForkerte)
+        {
+            case 1:
+                imageView1.setImageResource(R.drawable.forkert1);
+                break;
+            case 2:
+                imageView1.setImageResource(R.drawable.forkert2);
+                break;
+            case 3:
+                imageView1.setImageResource(R.drawable.forkert3);
+                break;
+            case 4:
+                imageView1.setImageResource(R.drawable.forkert4);
+                break;
+            case 5:
+                imageView1.setImageResource(R.drawable.forkert5);
+                break;
+            case 6:
+                imageView1.setImageResource(R.drawable.forkert6);
+                break;
+            default:
+                imageView1.setImageResource(R.drawable.galge);
+
+        }
+        // imageView1.setImageResource(R.drawable.forkert6);
 
     }
 

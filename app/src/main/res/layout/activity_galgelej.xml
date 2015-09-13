@@ -59,9 +59,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageViewet"
         android:contentDescription="galgeimage"
-        android:layout_toEndOf="@+id/textViewOrdet"
-        android:layout_below="@+id/buttonGæt" />
-        <!--android:layout_alignLeft="@+id/textViewOrdet"
+        android:src="@drawable/forkert6"
+        android:layout_below="@+id/editTextBogstav"
+        android:layout_alignRight="@+id/buttonSpil"
+        android:layout_alignEnd="@+id/buttonSpil" />
+        <!--
+                android:layout_below="@+id/buttonGæt"
+
+
+        android:layout_alignLeft="@+id/textViewOrdet"
         android:layout_alignStart="@+id/textViewOrdet"
         />
         -->
@@ -117,9 +123,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextGætOrdet"
+        android:layout_marginBottom="33dp"
         android:layout_alignBottom="@+id/buttonGætOrdet"
-        android:layout_toRightOf="@+id/buttonGætOrdet"
-        android:layout_toEndOf="@+id/buttonGætOrdet" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -128,8 +137,9 @@
         android:text="Gæt ordet"
         android:id="@+id/buttonGætOrdet"
 
-        android:layout_below="@+id/textView3"
+        android:layout_alignTop="@+id/imageViewet"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="72dp" />
 
 </RelativeLayout>
