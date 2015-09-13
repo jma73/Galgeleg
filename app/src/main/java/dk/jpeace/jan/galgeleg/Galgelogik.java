@@ -65,6 +65,9 @@ public class Galgelogik {
         muligeOrd.add("gangsti");
         muligeOrd.add("skovsnegl");
         muligeOrd.add("solsort");
+        muligeOrd.add("jungle");
+        muligeOrd.add("flygtning");
+        muligeOrd.add("metro");
         nulstil();
     }
 

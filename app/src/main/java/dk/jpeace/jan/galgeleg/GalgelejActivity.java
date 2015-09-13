@@ -1,6 +1,7 @@
 package dk.jpeace.jan.galgeleg;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     private TextView textViewBrugteBogst;
     private Button buttonGætOrdet;
     private EditText editTextGætOrdet;
+    private TextView textViewFinishedStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         textViewDebug = (TextView)findViewById(R.id.textViewDebug);
         textViewSynligtOrd = (TextView)findViewById(R.id.textViewSynligtOrd);
         textViewBrugteBogst = (TextView)findViewById(R.id.textViewBrugteBogst);
+        textViewFinishedStatus = (TextView)findViewById(R.id.textViewFinishedStatus);
 
         editTextBogstav = (EditText)findViewById(R.id.editTextBogstav);
         editTextGætOrdet = (EditText)findViewById(R.id.editTextGætOrdet);
@@ -58,6 +61,8 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         imageView1 =  (ImageView)findViewById(R.id.imageViewet);
         imageView1.setImageResource(R.drawable.forkert6);
         galgelogik = new Galgelogik();
+        textViewFinishedStatus.setText("Vælg start spil.");
+        textViewFinishedStatus.setTextColor(Color.DKGRAY);
 
 
         // disse skal egentlig slet ikke være med...
@@ -125,7 +130,6 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         }
         else
         {
-            imageView1.setImageResource(R.drawable.forkert5);
 
             galgelogik.gætBogstav(text.toString());
             String syngligtOrd = galgelogik.getSynligtOrd();
@@ -145,14 +149,22 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         if(galgelogik.erSpilletSlut()) {
             if(galgelogik.erSpilletTabt())
             {
-                Toast.makeText(this, "Spillet er tabt!!!", Toast.LENGTH_LONG).show();
+                String statusText = "Spillet er tabt!!!";
+                textViewFinishedStatus.setText(statusText);
+                textViewFinishedStatus.setTextColor(Color.RED);
+
+                Toast.makeText(this, statusText, Toast.LENGTH_LONG).show();
                 Log.d("jj", "spillet er tabt!");
                 buttonGæt.setEnabled(false);
             }
             else if(galgelogik.erSpilletVundet())
             {
-                Toast.makeText(this, "Spillet er vundet!!!", Toast.LENGTH_LONG).show();
-                Log.d("jj", "spillet er vundet!");
+                String statusText = "Spillet er vundet!!!";
+                textViewFinishedStatus.setText(statusText);
+                textViewFinishedStatus.setTextColor(Color.GREEN);
+                Toast.makeText(this, statusText, Toast.LENGTH_LONG).show();
+                Log.d("jj", statusText);
+                buttonGæt.setEnabled(false);
 
             }
         }
@@ -201,7 +213,6 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     }
 
     private void StartSpil() {
-
         galgelogik.nulstil();   // når spillet starter
         String ordet = galgelogik.getOrdet();
         textView2Show.setText(ordet);
@@ -210,6 +221,6 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         imageView1.setImageResource(R.drawable.galge);
         buttonSpil.setText("Nyt spil");
         buttonGæt.setEnabled(true);
+        textViewFinishedStatus.setText("Spillet er i gang.");
     }
-
 }

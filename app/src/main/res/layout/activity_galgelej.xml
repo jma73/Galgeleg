@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".GalgelejActivity"
+
     android:backgroundTint="#b2ffff">
 
     <TextView android:text="Galgeleg" android:layout_width="wrap_content"
@@ -24,7 +25,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#55cc55"
         android:text="brugte bogstaver:"
         android:id="@+id/textView"
         android:layout_below="@+id/textView2"
@@ -47,9 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Gæt et bogstav"
+        android:text="Gæt et bogstav:"
         android:id="@+id/textView3"
-        android:layout_alignTop="@+id/buttonGæt"
+        android:layout_alignBaseline="@+id/buttonGæt"
+        android:layout_alignBottom="@+id/buttonGæt"
         android:layout_toLeftOf="@+id/editTextBogstav"
         android:layout_toStartOf="@+id/editTextBogstav" />
 
@@ -59,9 +62,9 @@
         android:id="@+id/imageViewet"
         android:contentDescription="galgeimage"
         android:src="@drawable/forkert6"
-        android:layout_below="@+id/editTextBogstav"
-        android:layout_alignRight="@+id/buttonSpil"
-        android:layout_alignEnd="@+id/buttonSpil" />
+        android:layout_below="@+id/buttonGæt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
         <!--
                 android:layout_below="@+id/buttonGæt"
 
@@ -89,9 +92,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextBogstav"
-        android:layout_alignBottom="@+id/buttonGæt"
-        android:layout_toLeftOf="@+id/buttonGæt"
-        android:layout_toStartOf="@+id/buttonGæt" />
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toLeftOf="@+id/textViewSynligtOrd"
+        android:layout_toStartOf="@+id/textViewSynligtOrd" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -138,5 +141,15 @@
         android:layout_alignTop="@+id/imageViewet"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textViewFinishedStatus"
+        android:layout_below="@+id/imageViewet"
+        android:layout_toRightOf="@+id/textViewBrugteBogst"
+        android:layout_toEndOf="@+id/textViewBrugteBogst" />
 
 </RelativeLayout>
