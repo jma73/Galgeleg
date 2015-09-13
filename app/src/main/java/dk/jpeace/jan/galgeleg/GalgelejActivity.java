@@ -19,9 +19,7 @@ import java.util.ArrayList;
 
 public class GalgelejActivity extends Activity implements OnClickListener {
 
-    Galgelogik gl;
-    private int guessCounter;
-    private int guessMax = 6;
+    Galgelogik galgelogik;
 
     private Button buttonSpil;
     private TextView editviewTest;
@@ -40,7 +38,6 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galgelej);
 
-        guessCounter = 0;
         editviewTest = (TextView)findViewById(R.id.textView);
         textView2Show = (TextView)findViewById(R.id.textViewOrdet);
         textViewDebug = (TextView)findViewById(R.id.textViewDebug);
@@ -56,10 +53,16 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         buttonGæt.setOnClickListener(this);
         buttonSpil.setOnClickListener(this);
         buttonGætOrdet.setOnClickListener(this);
+        buttonGæt.setEnabled(false);
 
         imageView1 =  (ImageView)findViewById(R.id.imageViewet);
         imageView1.setImageResource(R.drawable.forkert6);
-        gl = new Galgelogik();
+        galgelogik = new Galgelogik();
+
+
+        // disse skal egentlig slet ikke være med...
+        buttonGætOrdet.setVisibility(View.INVISIBLE);
+        editTextGætOrdet.setVisibility(View.INVISIBLE);
 
     }
 
@@ -99,7 +102,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     private void GætOrdet() {
         // denne skal egentlig ikke med i den endelige løsning...
         Editable gæt = editTextGætOrdet.getText();
-        if(gæt.toString().equals(gl.getOrdet()))
+        if(gæt.toString().equals(galgelogik.getOrdet()))
             Toast.makeText(this, "Juhuuu - du gættede rigtigt!!!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Neeej det er forkert!!! Ready to hang??? '" + gæt.toString() + "'", Toast.LENGTH_SHORT).show();
@@ -124,8 +127,8 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         {
             imageView1.setImageResource(R.drawable.forkert5);
 
-            gl.gætBogstav(text.toString());
-            String syngligtOrd = gl.getSynligtOrd();
+            galgelogik.gætBogstav(text.toString());
+            String syngligtOrd = galgelogik.getSynligtOrd();
             textViewSynligtOrd.setText(syngligtOrd);
 
             VisBrugteBogstaver();
@@ -139,13 +142,14 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     }
 
     private void SpilStatus() {
-        if(gl.erSpilletSlut()) {
-            if(gl.erSpilletTabt())
+        if(galgelogik.erSpilletSlut()) {
+            if(galgelogik.erSpilletTabt())
             {
                 Toast.makeText(this, "Spillet er tabt!!!", Toast.LENGTH_LONG).show();
                 Log.d("jj", "spillet er tabt!");
+                buttonGæt.setEnabled(false);
             }
-            else if(gl.erSpilletVundet())
+            else if(galgelogik.erSpilletVundet())
             {
                 Toast.makeText(this, "Spillet er vundet!!!", Toast.LENGTH_LONG).show();
                 Log.d("jj", "spillet er vundet!");
@@ -157,10 +161,13 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void OpdaterGalgeBillede()
     {
-        int antalForkerte = gl.getAntalForkerteBogstaver();
+        int antalForkerte = galgelogik.getAntalForkerteBogstaver();
         Log.v("jj", (String.valueOf(antalForkerte)));
         switch (antalForkerte)
         {
+            case 0:
+                imageView1.setImageResource(R.drawable.galge);
+                break;
             case 1:
                 imageView1.setImageResource(R.drawable.forkert1);
                 break;
@@ -180,16 +187,13 @@ public class GalgelejActivity extends Activity implements OnClickListener {
                 imageView1.setImageResource(R.drawable.forkert6);
                 break;
             default:
-                imageView1.setImageResource(R.drawable.galge);
-
+                imageView1.setImageResource(R.drawable.forkert6);
         }
-        // imageView1.setImageResource(R.drawable.forkert6);
-
     }
 
     private void VisBrugteBogstaver() {
         String display = "";
-        ArrayList<String> bb = gl.getBrugteBogstaver();
+        ArrayList<String> bb = galgelogik.getBrugteBogstaver();
         for (String ii:bb  ) {
            display += ii;
         }
@@ -198,12 +202,14 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void StartSpil() {
 
-        gl.nulstil();   // når spillet starter
-        String ordet = gl.getOrdet();
+        galgelogik.nulstil();   // når spillet starter
+        String ordet = galgelogik.getOrdet();
         textView2Show.setText(ordet);
         Toast.makeText(this, "Spillet er startet!!!", Toast.LENGTH_LONG).show();
 
-        buttonSpil.setText("Ny spil");
+        imageView1.setImageResource(R.drawable.galge);
+        buttonSpil.setText("Nyt spil");
+        buttonGæt.setEnabled(true);
     }
 
 }

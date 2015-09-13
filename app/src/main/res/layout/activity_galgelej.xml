@@ -49,10 +49,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Gæt et bogstav"
         android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/imageViewet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="77dp" />
+        android:layout_alignTop="@+id/buttonGæt"
+        android:layout_toLeftOf="@+id/editTextBogstav"
+        android:layout_toStartOf="@+id/editTextBogstav" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -79,8 +78,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="[]"
         android:id="@+id/textViewBrugteBogst"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/textView" />
+        android:layout_below="@+id/textView"
+        />
+
+    <!--android:layout_alignTop="@+id/textView"
+    android:layout_toRightOf="@+id/textView"
+    />-->
 
     <EditText
         android:layout_width="wrap_content"
@@ -122,9 +125,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextGætOrdet"
-        android:layout_above="@+id/imageViewet"
-        android:layout_toRightOf="@+id/buttonGætOrdet"
-        android:layout_toEndOf="@+id/buttonGætOrdet" />
+        android:layout_below="@+id/buttonGætOrdet"
+        />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -133,7 +135,7 @@
         android:text="Gæt ordet"
         android:id="@+id/buttonGætOrdet"
 
-        android:layout_above="@+id/imageViewet"
+        android:layout_alignTop="@+id/imageViewet"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
