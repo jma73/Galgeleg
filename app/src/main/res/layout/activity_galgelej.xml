@@ -9,7 +9,8 @@
     <TextView android:text="Galgeleg" android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
 
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,8 +27,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="brugte bogstaver:"
         android:id="@+id/textView"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/editTextBogstav"
+        android:layout_alignBaseline="@+id/textViewSynligtOrd"
+        android:layout_alignBottom="@+id/textViewSynligtOrd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -36,10 +37,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="********"
-        android:id="@+id/textViewSkjulte"
+        android:id="@+id/textViewSynligtOrd"
         android:layout_below="@+id/buttonSpil"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignLeft="@+id/buttonGæt"
+        android:layout_alignStart="@+id/buttonGæt"
+        android:layout_alignRight="@+id/buttonSpil"
+        android:layout_alignEnd="@+id/buttonSpil" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +50,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Gæt et bogstav"
         android:id="@+id/textView3"
-        android:layout_above="@+id/textView"
+        android:layout_above="@+id/imageViewet"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -55,48 +58,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageViewet"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="14dp"
-        android:contentDescription="galgeimage" />
+        android:contentDescription="galgeimage"
+        android:layout_toEndOf="@+id/textViewOrdet"
+        android:layout_below="@+id/buttonGæt" />
+        <!--android:layout_alignLeft="@+id/textViewOrdet"
+        android:layout_alignStart="@+id/textViewOrdet"
+        />
+        -->
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="[]"
-        android:id="@+id/textView4"
+        android:id="@+id/textViewBrugteBogst"
         android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toRightOf="@+id/textView" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextBogstav"
         android:layout_alignBottom="@+id/buttonGæt"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_toLeftOf="@+id/buttonGæt"
+        android:layout_toStartOf="@+id/buttonGæt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="brugte bogstaver:"
-        android:id="@+id/textView2"
+        android:text="&lt;ordet>"
+        android:id="@+id/textViewOrdet"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textView4"
-        android:layout_toStartOf="@+id/textView4" />
+        android:layout_toLeftOf="@+id/textViewBrugteBogst"
+        android:layout_toStartOf="@+id/textViewBrugteBogst" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gæt"
+        android:text="Gæt bogstav"
         android:id="@+id/buttonGæt"
-        android:layout_below="@+id/textViewSkjulte"
-        android:layout_toLeftOf="@+id/buttonSpil"
-        android:layout_toStartOf="@+id/buttonSpil" />
+        android:layout_below="@+id/textViewBrugteBogst"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,8 +109,27 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small debug Text"
         android:id="@+id/textViewDebug"
-        android:layout_alignTop="@+id/textView2"
+        android:layout_alignTop="@+id/textViewOrdet"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextGætOrdet"
+        android:layout_alignBottom="@+id/buttonGætOrdet"
+        android:layout_toRightOf="@+id/buttonGætOrdet"
+        android:layout_toEndOf="@+id/buttonGætOrdet" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gæt ordet"
+        android:id="@+id/buttonGætOrdet"
+
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
