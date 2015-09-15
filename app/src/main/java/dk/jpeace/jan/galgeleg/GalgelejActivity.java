@@ -1,6 +1,7 @@
 package dk.jpeace.jan.galgeleg;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class GalgelejActivity extends Activity implements OnClickListener {
+
+    public final static String EXTRA_MESSAGE = "dk.jpeace.jan.galgeleg.MESSAGE";
+    public final static String ER_SPIL_VUNDET = "false";
 
     Galgelogik galgelogik;
 
@@ -145,6 +149,9 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void SpilStatus() {
         if(galgelogik.erSpilletSlut()) {
+
+            Intent spilletErSlutIntent = new Intent(getApplicationContext(), SpilSlutActivity.class);
+
             if(galgelogik.erSpilletTabt())
             {
                 String statusText = "Spillet er tabt!!!";
@@ -154,6 +161,11 @@ public class GalgelejActivity extends Activity implements OnClickListener {
                 Toast.makeText(this, statusText, Toast.LENGTH_LONG).show();
                 Log.d("jj", "spillet er tabt!");
                 buttonGæt.setEnabled(false);
+
+                spilletErSlutIntent.putExtra(EXTRA_MESSAGE, statusText);
+                spilletErSlutIntent.putExtra(ER_SPIL_VUNDET, "false");
+                startActivity(spilletErSlutIntent);
+
             }
             else if(galgelogik.erSpilletVundet())
             {
@@ -163,6 +175,14 @@ public class GalgelejActivity extends Activity implements OnClickListener {
                 Toast.makeText(this, statusText, Toast.LENGTH_LONG).show();
                 Log.d("jj", statusText);
                 buttonGæt.setEnabled(false);
+
+                // public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+                spilletErSlutIntent.putExtra(EXTRA_MESSAGE, statusText);
+                spilletErSlutIntent.putExtra(ER_SPIL_VUNDET, "true");
+
+                //spilletErSlutIntent.setAction()
+                startActivity(spilletErSlutIntent);
+
 
             }
         }
