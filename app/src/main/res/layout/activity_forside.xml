@@ -36,4 +36,22 @@
         android:layout_below="@+id/buttonStartSpil"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opdater ordliste"
+        android:id="@+id/buttonHentOrdWeb"
+        android:layout_below="@+id/buttonIndstillinger"
+        android:layout_alignLeft="@+id/buttonIndstillinger"
+        android:layout_alignStart="@+id/buttonIndstillinger" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="----"
+        android:id="@+id/textViewDateTime"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

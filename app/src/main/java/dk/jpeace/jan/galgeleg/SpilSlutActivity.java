@@ -28,12 +28,8 @@ public class SpilSlutActivity extends AppCompatActivity {
         else
             imageView1.setImageResource(R.drawable.galge);
 
-
         textViewSpilSlut = (TextView) findViewById(R.id.textViewSpilSlut);
         textViewSpilSlut.setText(message);
-
-
-
     }
 
     @Override
@@ -54,7 +50,6 @@ public class SpilSlutActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

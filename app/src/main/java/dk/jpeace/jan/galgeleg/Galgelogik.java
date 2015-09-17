@@ -22,7 +22,6 @@ public class Galgelogik {
     private boolean spilletErVundet;
     private boolean spilletErTabt;
 
-
     public ArrayList<String> getBrugteBogstaver() {
         return brugteBogstaver;
     }
@@ -54,7 +53,6 @@ public class Galgelogik {
     public boolean erSpilletSlut() {
         return spilletErTabt || spilletErVundet;
     }
-
 
     public Galgelogik() {
         muligeOrd.add("bil");
@@ -152,5 +150,11 @@ public class Galgelogik {
 
         System.out.println("muligeOrd = " + muligeOrd);
         nulstil();
+    }
+
+    // tilføjet af jan - til test.
+    public ArrayList<String> muligeOrd()
+    {
+        return muligeOrd;
     }
 }

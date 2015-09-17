@@ -24,7 +24,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     public final static String EXTRA_MESSAGE = "dk.jpeace.jan.galgeleg.MESSAGE";
     public final static String ER_SPIL_VUNDET = "false";
 
-    Galgelogik galgelogik;
+    //ForsideActivity.galgelogik ForsideActivity.galgelogik;
 
     private Button buttonSpil;
     private TextView editviewTest;
@@ -54,6 +54,9 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         editTextBogstav = (EditText)findViewById(R.id.editTextBogstav);
         editTextGætOrdet = (EditText)findViewById(R.id.editTextGætOrdet);
 
+        editTextBogstav.setError("du skal taste noget.");
+        editTextBogstav.setOnClickListener(this);
+
         buttonGæt = (Button) findViewById(R.id.buttonGæt);
         buttonSpil = (Button) findViewById(R.id.buttonSpil);
         buttonGætOrdet = (Button) findViewById(R.id.buttonGætOrdet);
@@ -64,7 +67,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
         imageView1 =  (ImageView)findViewById(R.id.imageViewet);
         imageView1.setImageResource(R.drawable.forkert6);
-        galgelogik = new Galgelogik();
+        //ForsideActivity.galgelogik = new ForsideActivity.galgelogik();
         textViewFinishedStatus.setText("Vælg start spil.");
         textViewFinishedStatus.setTextColor(Color.DKGRAY);
 
@@ -109,7 +112,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     private void GætOrdet() {
         // denne skal egentlig ikke med i den endelige løsning...
         Editable gæt = editTextGætOrdet.getText();
-        if(gæt.toString().equals(galgelogik.getOrdet()))
+        if(gæt.toString().equals(ForsideActivity.galgelogik.getOrdet()))
             Toast.makeText(this, "Juhuuu - du gættede rigtigt!!!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Neeej det er forkert!!! Ready to hang??? '" + gæt.toString() + "'", Toast.LENGTH_SHORT).show();
@@ -133,8 +136,8 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         else
         {
 
-            galgelogik.gætBogstav(text.toString());
-            String syngligtOrd = galgelogik.getSynligtOrd();
+            ForsideActivity.galgelogik.gætBogstav(text.toString());
+            String syngligtOrd = ForsideActivity.galgelogik.getSynligtOrd();
             textViewSynligtOrd.setText(syngligtOrd);
 
             VisBrugteBogstaver();
@@ -148,11 +151,11 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     }
 
     private void SpilStatus() {
-        if(galgelogik.erSpilletSlut()) {
+        if(ForsideActivity.galgelogik.erSpilletSlut()) {
 
             Intent spilletErSlutIntent = new Intent(getApplicationContext(), SpilSlutActivity.class);
 
-            if(galgelogik.erSpilletTabt())
+            if(ForsideActivity.galgelogik.erSpilletTabt())
             {
                 String statusText = "Spillet er tabt!!!";
                 textViewFinishedStatus.setText(statusText);
@@ -167,7 +170,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
                 startActivity(spilletErSlutIntent);
 
             }
-            else if(galgelogik.erSpilletVundet())
+            else if(ForsideActivity.galgelogik.erSpilletVundet())
             {
                 String statusText = "Spillet er vundet!!!";
                 textViewFinishedStatus.setText(statusText);
@@ -191,7 +194,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void OpdaterGalgeBillede()
     {
-        int antalForkerte = galgelogik.getAntalForkerteBogstaver();
+        int antalForkerte = ForsideActivity.galgelogik.getAntalForkerteBogstaver();
         Log.v("jj", (String.valueOf(antalForkerte)));
         switch (antalForkerte)
         {
@@ -223,7 +226,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
     private void VisBrugteBogstaver() {
         String display = "";
-        ArrayList<String> bb = galgelogik.getBrugteBogstaver();
+        ArrayList<String> bb = ForsideActivity.galgelogik.getBrugteBogstaver();
         for (String ii:bb  ) {
            display += ii;
         }
@@ -231,8 +234,8 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     }
 
     private void StartSpil() {
-        galgelogik.nulstil();   // når spillet starter
-        String ordet = galgelogik.getOrdet();
+        ForsideActivity.galgelogik.nulstil();   // når spillet starter
+        String ordet = ForsideActivity.galgelogik.getOrdet();
         textView2Show.setText(ordet);
         Toast.makeText(this, "Spillet er startet!!!", Toast.LENGTH_LONG).show();
 
@@ -242,7 +245,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         textViewFinishedStatus.setText("Spillet er i gang.");
 
         textViewBrugteBogst.setText("");
-        textViewSynligtOrd.setText(galgelogik.getSynligtOrd());
+        textViewSynligtOrd.setText(ForsideActivity.galgelogik.getSynligtOrd());
     }
 
 
