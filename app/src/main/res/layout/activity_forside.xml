@@ -41,9 +41,8 @@
         android:layout_height="wrap_content"
         android:text="Opdater ordliste"
         android:id="@+id/buttonHentOrdWeb"
-        android:layout_below="@+id/buttonIndstillinger"
-        android:layout_alignLeft="@+id/buttonIndstillinger"
-        android:layout_alignStart="@+id/buttonIndstillinger" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"

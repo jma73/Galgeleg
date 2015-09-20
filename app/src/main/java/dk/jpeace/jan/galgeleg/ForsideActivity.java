@@ -104,7 +104,6 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             protected void onPostExecute(Object titler) {
-                //textView.setText("resultat: \n" + titler);
                 Toast.makeText(ForsideActivity.this, "resultat: \n" + titler, Toast.LENGTH_SHORT).show();
                 setProgressBarIndeterminateVisibility(false);
             }

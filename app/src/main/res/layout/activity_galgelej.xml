@@ -152,8 +152,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textViewFinishedStatus"
+
         android:layout_below="@+id/imageViewet"
-        android:layout_toRightOf="@+id/textViewBrugteBogst"
-        android:layout_toEndOf="@+id/textViewBrugteBogst" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
