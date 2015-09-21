@@ -27,7 +27,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
     //ForsideActivity.galgelogik ForsideActivity.galgelogik;
 
     private Button buttonSpil;
-    private TextView editviewTest;
+    //private TextView editviewTest;
     private ImageView imageView1;
     private Button buttonGæt;
     private EditText editTextBogstav;
@@ -44,7 +44,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galgelej);
 
-        editviewTest = (TextView)findViewById(R.id.textView);
+        //editviewTest = (TextView)findViewById(R.id.textView);
         textView2Show = (TextView)findViewById(R.id.textViewOrdet);
         textViewDebug = (TextView)findViewById(R.id.textViewDebug);
         textViewSynligtOrd = (TextView)findViewById(R.id.textViewSynligtOrd);
