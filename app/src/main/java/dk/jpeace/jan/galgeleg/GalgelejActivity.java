@@ -190,7 +190,6 @@ public class GalgelejActivity extends Activity implements OnClickListener {
                 spilletErSlutIntent.putExtra(ER_SPIL_VUNDET, "false");
                 spilletErSlutIntent.putExtra(SPILLE_TID, spilleTid);
                 startActivity(spilletErSlutIntent);
-
             }
             else if(ForsideActivity.galgelogik.erSpilletVundet())
             {
