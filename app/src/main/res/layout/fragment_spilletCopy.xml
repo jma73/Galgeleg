@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nedenfor er et FrameLayout til fragmenter"/>
+        android:text="Nedenfor er et FrameLayout til fragmenter... dennne fil har jeg tilføjet fordi android studio messed op på en renaming... Kapital letters blev rettet til lower case..."/>
 
 
     <FrameLayout
