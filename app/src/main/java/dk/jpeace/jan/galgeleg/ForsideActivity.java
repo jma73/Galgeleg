@@ -35,10 +35,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
         SimpleDateFormat  df = new SimpleDateFormat("dd MM yyyy, HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
-
-        //DateFormat dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss");
         textViewDateTime = (TextView)findViewById(R.id.textViewDateTime);
-        textViewDateTime.setText(date);
+        String version = "lek4.0";
+        textViewDateTime.setText(version + ", " + date);
 
 
         buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
