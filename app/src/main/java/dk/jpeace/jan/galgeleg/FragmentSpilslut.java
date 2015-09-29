@@ -1,0 +1,102 @@
+package dk.jpeace.jan.galgeleg;
+
+import android.app.Activity;
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+
+public class FragmentSpilslut extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ER_SPIL_VUNDET = "false";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private boolean erSpilletVundet;
+    private String spilleTid;
+
+//    private OnFragmentInteractionListener mListener;
+
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @return A new instance of fragment FragmentSpilslut.
+//     */
+//    // TODO: Rename and change types and number of parameters
+//    public static FragmentSpilslut newInstance(String spilleTid, boolean erSpilletVundet) {
+//        FragmentSpilslut fragment = new FragmentSpilslut();
+//        Bundle args = new Bundle();
+//        args.putBoolean(ER_SPIL_VUNDET, erSpilletVundet);
+//        args.putString(ARG_PARAM2, spilleTid);
+//
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+
+    public FragmentSpilslut() {
+        // Required empty public constructor
+    }
+
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        if (getArguments() != null) {
+//            erSpilletVundet = getArguments().getBoolean(ER_SPIL_VUNDET);
+//            spilleTid = getArguments().getString(ARG_PARAM2);
+//        }
+//    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rod =  inflater.inflate(R.layout.fragment_spilslut, container, false);
+
+
+//        String spilStatus = intent.getStringExtra(GalgelejActivity.ER_SPIL_VUNDET);
+//        long spilleTid = intent.getLongExtra(GalgelejActivity.SPILLE_TID, -1);
+
+
+        if (getArguments() != null) {
+            erSpilletVundet = getArguments().getBoolean(ER_SPIL_VUNDET);
+            spilleTid = getArguments().getString(ARG_PARAM2);
+        }
+        Log.d("fragment_spilslut", "onCreateView");
+        Log.d("fragment_spilslut", String.valueOf(erSpilletVundet));
+        Log.d("fragment_spilslut", String.valueOf(spilleTid));
+
+
+        return rod;
+    }
+
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
+
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Uri uri);
+    }
+
+}

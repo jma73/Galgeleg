@@ -16,7 +16,6 @@ import android.widget.TextView;
  */
 public class FragmentForside extends Fragment implements View.OnClickListener {
 
-
     private Button buttonStartSpil;
 
     public FragmentForside() {
@@ -58,6 +57,7 @@ public class FragmentForside extends Fragment implements View.OnClickListener {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentindhold, new FragmentSpillet())
                     .addToBackStack(null)
+                    // .setTransition(8)
                     .commit();
         }
     }

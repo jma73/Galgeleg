@@ -90,7 +90,6 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
     private void startSpilFragmet() {
 
-
         FragmentSpillet fragmentSpillet = new FragmentSpillet();
         Bundle argumenter = new Bundle(); // Overfør data til fragmentet
         argumenter.putString("velkomst", "\n\nGod fornøjelse med Galgeleg!");
@@ -98,7 +97,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, fragmentSpillet)
-                .addToBackStack(null)
+                // .addToBackStack(null)
                 .commit();
     }
 

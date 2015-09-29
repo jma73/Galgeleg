@@ -25,6 +25,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class FragmentSpillet extends Fragment implements View.OnClickListener {
 
+    public final static String EXTRA_MESSAGE = "dk.jpeace.jan.galgeleg.MESSAGE";
+    public final static String ER_SPIL_VUNDET = "dk.jpeace.jan.galgeleg.ER_SPIL_VUNDET";
+    public final static String SPILLE_TID = "dk.jpeace.jan.galgeleg.SPILLE_TID";
+
     Date startTime;
     private Button buttonGætBogstav;
     private TextView textViewTest1;
@@ -61,9 +65,7 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
         editTextBogstav = (EditText) rod.findViewById(R.id.editTextBogstav);
 
         imageViewetFS = (ImageView) rod.findViewById(R.id.imageViewetFS);
-
-
-        StartSpil();        // pt. bare til test...
+        StartSpil();
 
         return rod;
     }
@@ -77,10 +79,8 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
         {
             ForsideActivity.galgelogik.getOrdet();
             textViewTest1.setText("så vi igang - with Fragmentzzzz");
-
             BogstavTest(editTextBogstav.getText());
         }
-
     }
 
     private void BogstavTest(Editable text) {
@@ -94,20 +94,17 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
             imageViewetFS.setImageResource(R.drawable.forkert3);
 
             Log.d("jj", "det indtastede passer ikke. " + text1);
-//            Toast.makeText(FragmentSpillet.this, "Fejl: Du skal taste præcis eet bogstav!", Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(getActivity(), "Fejl: Du skal taste præcis eet bogstav!", Toast.LENGTH_SHORT).show();
         }
         else
         {
-
             ForsideActivity.galgelogik.gætBogstav(text.toString());
             String syngligtOrd = ForsideActivity.galgelogik.getSynligtOrd();
             TextViewFSordVisning.setText(syngligtOrd);
 
             VisBrugteBogstaver();
-
             editTextBogstav.setText("");
+            editTextBogstav.setFocusable(true);
         }
 
         OpdaterGalgeBillede();
@@ -123,6 +120,23 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
         }
         textViewBrugteBogst.setText(display);
     }
+
+    private void startFragmentSpilslut(long spilletid, boolean isWon) {
+
+        FragmentSpilslut fragmentSpilslut = new FragmentSpilslut();
+
+        Bundle argumenter = new Bundle(); // Overfør data til fragmentet
+        argumenter.putString(SPILLE_TID, String.valueOf(spilletid));
+        argumenter.putBoolean(ER_SPIL_VUNDET, isWon);
+
+        fragmentSpilslut.setArguments(argumenter);
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentindhold, fragmentSpilslut)
+                        // .addToBackStack(null)
+                .commit();
+    }
+
 
     private void SpilStatus() {
 
@@ -145,10 +159,9 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
                 Log.d("jj", "spillet er tabt!");
                 buttonGætBogstav.setEnabled(false);
 
-//                spilletErSlutIntent.putExtra(EXTRA_MESSAGE, statusText);
-//                spilletErSlutIntent.putExtra(ER_SPIL_VUNDET, "false");
-//                spilletErSlutIntent.putExtra(SPILLE_TID, spilleTid);
-//                startActivity(spilletErSlutIntent);
+                // todo jan: jeg kan desværre ikke når at gøre dette færdigt.
+                // startFragmentSpilslut(spilleTid, false);
+
             }
             else if(ForsideActivity.galgelogik.erSpilletVundet())
             {
@@ -159,13 +172,8 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
                 Log.d("jj", statusText);
                 buttonGætBogstav.setEnabled(false);
 
-//                spilletErSlutIntent.putExtra(EXTRA_MESSAGE, statusText);
-//                spilletErSlutIntent.putExtra(ER_SPIL_VUNDET, "true");
-//                spilletErSlutIntent.putExtra(SPILLE_TID, spilleTid);
-
-//                startActivity(spilletErSlutIntent);
-//                this.finish();
-
+                // todo jan: jeg kan desværre ikke når at gøre dette færdigt.
+                // startFragmentSpilslut(spilleTid, true);
 
             }
         }
