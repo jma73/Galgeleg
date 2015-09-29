@@ -47,6 +47,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         buttonHentOrdWeb.setOnClickListener(this);
         //buttonGæt.setOnClickListener(this);
 
+
     }
 
     @Override
