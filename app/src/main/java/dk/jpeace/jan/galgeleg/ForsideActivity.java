@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,8 +28,13 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_forside);
-//        setContentView(R.layout.activity_forside2);
-        setContentView(R.layout.fragment_forside);
+
+        Log.d("ForsideActivity", "in onCreate! Så vi igen");
+
+        setContentView(R.layout.activity_forside2);
+        //setContentView(R.layout.fragment_forside);
+
+        Log.d("ForsideActivity", "in onCreate! vi er videre...");
 
 //        SimpleDateFormat  df = new SimpleDateFormat("dd MM yyyy, HH:mm");
 //        String date = df.format(Calendar.getInstance().getTime());
@@ -37,9 +43,10 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 //        textViewDateTime.setText(version + ", " + date);
 //
 //
-//        buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
+            buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
+            buttonStartSpil.setOnClickListener(this);
+
 //        buttonHentOrdWeb = (Button)findViewById(R.id.buttonHentOrdWeb);
-//        buttonStartSpil.setOnClickListener(this);
 //        buttonHentOrdWeb.setOnClickListener(this);
 
 
@@ -69,6 +76,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        Log.d("ForsideActivity", "in onClick!");
         if(v == buttonStartSpil)
             startSpilFragmet();
             // startSpilAct();
@@ -81,6 +89,8 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void startSpilFragmet() {
+
+
         FragmentSpillet fragmentSpillet = new FragmentSpillet();
         Bundle argumenter = new Bundle(); // Overfør data til fragmentet
         argumenter.putString("velkomst", "\n\nGod fornøjelse med Galgeleg!");
