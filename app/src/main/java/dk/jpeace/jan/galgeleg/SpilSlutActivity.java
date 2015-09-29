@@ -1,22 +1,32 @@
 package dk.jpeace.jan.galgeleg;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SpilSlutActivity extends AppCompatActivity {
+//public class SpilSlutActivity extends Fragment {
 
     private TextView textViewSpilSlut;
     private ImageView imageView1;
 
     @Override
+    //public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spilslut);
+
+
+        //FrameLayout frameLayout = new FrameLayout(R.layout.activity_spilslut);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(GalgelejActivity.EXTRA_MESSAGE);
@@ -31,6 +41,7 @@ public class SpilSlutActivity extends AppCompatActivity {
 
         textViewSpilSlut = (TextView) findViewById(R.id.textViewSpilSlut);
         textViewSpilSlut.setText(message + " Du brugte " + spilleTid + " sekunder.");
+        // return null;
     }
 
     @Override

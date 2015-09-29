@@ -207,6 +207,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
 
                 //spilletErSlutIntent.setAction()
                 startActivity(spilletErSlutIntent);
+                this.finish();
 
 
             }

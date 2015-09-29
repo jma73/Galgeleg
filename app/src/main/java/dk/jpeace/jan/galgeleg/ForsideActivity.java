@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,24 +26,21 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forside);
+//        setContentView(R.layout.activity_forside);
+//        setContentView(R.layout.activity_forside2);
+        setContentView(R.layout.fragment_forside);
 
-//        Calendar c = Calendar.getInstance();
-//        int seconds = c.get(Calendar.DATE);
-
-        SimpleDateFormat  df = new SimpleDateFormat("dd MM yyyy, HH:mm");
-        String date = df.format(Calendar.getInstance().getTime());
-
-        //DateFormat dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss");
-        textViewDateTime = (TextView)findViewById(R.id.textViewDateTime);
-        textViewDateTime.setText(date);
-
-
-        buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
-        buttonHentOrdWeb = (Button)findViewById(R.id.buttonHentOrdWeb);
-        buttonStartSpil.setOnClickListener(this);
-        buttonHentOrdWeb.setOnClickListener(this);
-        //buttonGæt.setOnClickListener(this);
+//        SimpleDateFormat  df = new SimpleDateFormat("dd MM yyyy, HH:mm");
+//        String date = df.format(Calendar.getInstance().getTime());
+//        textViewDateTime = (TextView)findViewById(R.id.textViewDateTime);
+//        String version = "lek4.0";
+//        textViewDateTime.setText(version + ", " + date);
+//
+//
+//        buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
+//        buttonHentOrdWeb = (Button)findViewById(R.id.buttonHentOrdWeb);
+//        buttonStartSpil.setOnClickListener(this);
+//        buttonHentOrdWeb.setOnClickListener(this);
 
 
     }
@@ -75,7 +70,8 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if(v == buttonStartSpil)
-            startSpil();
+            startSpilFragmet();
+            // startSpilAct();
         if(v == buttonHentOrdWeb)
         {
             //String muligeord = hentOrdFraWeb();
@@ -84,9 +80,23 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    private void startSpilFragmet() {
+        FragmentSpillet fragmentSpillet = new FragmentSpillet();
+        Bundle argumenter = new Bundle(); // Overfør data til fragmentet
+        argumenter.putString("velkomst", "\n\nGod fornøjelse med Galgeleg!");
+        fragmentSpillet.setArguments(argumenter);
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentindhold, fragmentSpillet)
+                .addToBackStack(null)
+                .commit();
+    }
+
     private void hentOrdFraWeb() {
 
         //String titler;
+
+        // Lint: Warning:(97, 29) Unchecked call to 'execute(Params...)' as a member of raw type 'android.os.AsyncTask'
         AsyncTask execute = new AsyncTask() {
             @Override
             protected Object doInBackground(Object... arg0) {
@@ -119,7 +129,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void startSpil() {
+    private void startSpilAct() {
         Intent startSpilGalgelegIntent = new Intent(getApplicationContext(), GalgelejActivity.class);
         //startSpilGalgelegIntent.setAction(Intent.ACTION_SEND);
         startActivity(startSpilGalgelegIntent);
