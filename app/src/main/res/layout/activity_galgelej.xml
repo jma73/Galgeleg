@@ -40,8 +40,8 @@
         android:text="********"
         android:id="@+id/textViewSynligtOrd"
         android:layout_below="@+id/buttonSpil"
-        android:layout_alignLeft="@+id/buttonGæt"
-        android:layout_alignStart="@+id/buttonGæt"
+        android:layout_alignLeft="@+id/buttonGætBogstav"
+        android:layout_alignStart="@+id/buttonGætBogstav"
         android:layout_alignRight="@+id/buttonSpil"
         android:layout_alignEnd="@+id/buttonSpil" />
 
@@ -51,8 +51,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Gæt et bogstav:"
         android:id="@+id/textView3"
-        android:layout_alignBaseline="@+id/buttonGæt"
-        android:layout_alignBottom="@+id/buttonGæt"
+        android:layout_alignBaseline="@+id/buttonGætBogstav"
+        android:layout_alignBottom="@+id/buttonGætBogstav"
         android:layout_toLeftOf="@+id/editTextBogstav"
         android:layout_toStartOf="@+id/editTextBogstav" />
 
@@ -62,7 +62,7 @@
         android:id="@+id/imageViewet"
         android:contentDescription="galgeimage"
         android:src="@drawable/forkert6"
-        android:layout_below="@+id/buttonGæt"
+        android:layout_below="@+id/buttonGætBogstav"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
         <!--
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
 
         android:text="Gæt bogstav"
-        android:id="@+id/buttonGæt"
+        android:id="@+id/buttonGætBogstav"
         android:layout_below="@+id/textViewSynligtOrd"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

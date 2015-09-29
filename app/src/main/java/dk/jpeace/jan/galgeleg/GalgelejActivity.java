@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +62,7 @@ public class GalgelejActivity extends Activity implements OnClickListener {
         editTextBogstav.setError("du skal taste noget.");
         editTextBogstav.setOnClickListener(this);
 
-        buttonGæt = (Button) findViewById(R.id.buttonGæt);
+        buttonGæt = (Button) findViewById(R.id.buttonGætBogstav);
         buttonSpil = (Button) findViewById(R.id.buttonSpil);
         buttonGætOrdet = (Button) findViewById(R.id.buttonGætOrdet);
         buttonGæt.setOnClickListener(this);
