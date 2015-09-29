@@ -12,15 +12,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="2"
+        android:id="@+id/textViewFSheader"
+        android:text="@string/overskrift_fragment_spil" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/TextViewFSordVisning"
+        android:text="- - -"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewFSbrugteBogstaver"
+        android:text="brugte"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewetFS"
         android:layout_weight="1"
+
+        android:contentDescription="galgeimage"
+
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitCenter"
+
+        android:src="@drawable/forkert6"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:id="@+id/TextViewFragSpilTest1"
-        android:text="Nedenfor er et FrameLayout til fragmenter... dennne fil har jeg tilføjet fordi android studio messed op på en renaming... Kapital letters blev rettet til lower case..."/>
+        android:text=" test test test"/>
 
 
     <!--<FrameLayout-->
@@ -33,14 +67,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLength="1"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:id="@+id/editTextBogstav"
          />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_="wrap_content"
+
+
         android:text="Gæt bogstav"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:id="@+id/buttonGætBogstav"
         />
 
@@ -50,7 +87,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Her er en bundtekst, f.eks en status"/>
+        android:id="@+id/textViewFSbottom"
+        android:text="status"/>
 
 
 </LinearLayout>

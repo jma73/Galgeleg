@@ -5,5 +5,5 @@
     <string name="title_activity_forside">Galgeleg!!!</string>
     <string name="title_activity_spil_slut">SpilSlutActivity</string>
 
-    <string name="hello_blank_fragment">Hello fragment_spillet</string>
+    <string name="overskrift_fragment_spil">Så er Galgespillet igang! Tik tak... tiden går!</string>
 </resources>
