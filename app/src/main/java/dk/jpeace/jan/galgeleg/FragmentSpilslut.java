@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -22,6 +23,7 @@ public class FragmentSpilslut extends Fragment {
     private String spilleTid;
     private TextView textViewSpilSlutTid;
     private TextView textViewSpilSlutResultat;
+    private ImageView imageViewSpilSlut;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -69,6 +71,8 @@ public class FragmentSpilslut extends Fragment {
 
         textViewSpilSlutTid = (TextView) rod.findViewById(R.id.textViewSpilSlutTid);
         textViewSpilSlutResultat = (TextView) rod.findViewById(R.id.textViewSpilSlutResultat);
+        imageViewSpilSlut = (ImageView) rod.findViewById(R.id.imageViewSpilSlut);
+
 
 
         if (getArguments() != null) {
@@ -84,6 +88,8 @@ public class FragmentSpilslut extends Fragment {
             textViewSpilSlutTid.setText("Tillykke - du gættede ordet!");
         else
             textViewSpilSlutTid.setText("Bedre held næste gang!");
+
+        GalgelegUITools.OpdaterGalgeBillede(imageViewSpilSlut, ForsideActivity.galgelogik.getAntalForkerteBogstaver());
 
         return rod;
     }

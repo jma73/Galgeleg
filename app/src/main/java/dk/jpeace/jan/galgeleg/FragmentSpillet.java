@@ -106,7 +106,7 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
             editTextBogstav.setFocusable(true);
         }
 
-        OpdaterGalgeBillede();
+        GalgelegUITools.OpdaterGalgeBillede(imageViewetFS, ForsideActivity.galgelogik.getAntalForkerteBogstaver());
         SpilStatus();
 
     }
@@ -131,8 +131,9 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
         fragmentSpilslut.setArguments(argumenter);
 
         getFragmentManager().beginTransaction()
+                //.add(R.id.fragmentindhold, fragmentSpilslut)
                 .replace(R.id.fragmentindhold, fragmentSpilslut)
-                        // .addToBackStack(null)
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -201,37 +202,5 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
 //
 //        textViewBrugteBogst.setText("");
 //        textViewSynligtOrd.setText(ForsideActivity.galgelogik.getSynligtOrd());
-    }
-
-    private void OpdaterGalgeBillede()
-    {
-        int antalForkerte = ForsideActivity.galgelogik.getAntalForkerteBogstaver();
-        Log.v("jj", (String.valueOf(antalForkerte)));
-        switch (antalForkerte)
-        {
-            case 0:
-                imageViewetFS.setImageResource(R.drawable.galge);
-                break;
-            case 1:
-                imageViewetFS.setImageResource(R.drawable.forkert1);
-                break;
-            case 2:
-                imageViewetFS.setImageResource(R.drawable.forkert2);
-                break;
-            case 3:
-                imageViewetFS.setImageResource(R.drawable.forkert3);
-                break;
-            case 4:
-                imageViewetFS.setImageResource(R.drawable.forkert4);
-                break;
-            case 5:
-                imageViewetFS.setImageResource(R.drawable.forkert5);
-                break;
-            case 6:
-                imageViewetFS.setImageResource(R.drawable.forkert6);
-                break;
-            default:
-                imageViewetFS.setImageResource(R.drawable.forkert6);
-        }
     }
 }
