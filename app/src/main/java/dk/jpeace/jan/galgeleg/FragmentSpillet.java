@@ -56,7 +56,6 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
         buttonGætBogstav = (Button) rod.findViewById(R.id.buttonGætBogstav);
         buttonGætBogstav.setOnClickListener(this);
 
-        // textViewTest1
         textViewTest1 = (TextView) rod.findViewById(R.id.TextViewFragSpilTest1);
         TextViewFSordVisning = (TextView) rod.findViewById(R.id.TextViewFSordVisning);
         textViewFSheader = (TextView) rod.findViewById(R.id.textViewFSheader);
@@ -159,21 +158,21 @@ public class FragmentSpillet extends Fragment implements View.OnClickListener {
                 Log.d("jj", "spillet er tabt!");
                 buttonGætBogstav.setEnabled(false);
 
-                // todo jan: jeg kan desværre ikke når at gøre dette færdigt.
-                // startFragmentSpilslut(spilleTid, false);
+                startFragmentSpilslut(spilleTid, false);
 
             }
             else if(ForsideActivity.galgelogik.erSpilletVundet())
             {
                 String statusText = "Spillet er vundet!!!";
+                Log.d("jj", statusText);
+
                 textViewTest1.setText(statusText);
                 textViewTest1.setTextColor(Color.GREEN);
                 Toast.makeText(getActivity(), statusText, Toast.LENGTH_LONG).show();
                 Log.d("jj", statusText);
                 buttonGætBogstav.setEnabled(false);
 
-                // todo jan: jeg kan desværre ikke når at gøre dette færdigt.
-                // startFragmentSpilslut(spilleTid, true);
+                startFragmentSpilslut(spilleTid, true);
 
             }
         }

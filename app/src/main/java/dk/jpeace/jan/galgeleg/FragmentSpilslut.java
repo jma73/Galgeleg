@@ -8,17 +8,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class FragmentSpilslut extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ER_SPIL_VUNDET = "false";
+    // private static final String ER_SPIL_VUNDET = "false";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private boolean erSpilletVundet;
     private String spilleTid;
+    private TextView textViewSpilSlutTid;
+    private TextView textViewSpilSlutResultat;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -64,14 +67,23 @@ public class FragmentSpilslut extends Fragment {
 //        long spilleTid = intent.getLongExtra(GalgelejActivity.SPILLE_TID, -1);
 
 
+        textViewSpilSlutTid = (TextView) rod.findViewById(R.id.textViewSpilSlutTid);
+        textViewSpilSlutResultat = (TextView) rod.findViewById(R.id.textViewSpilSlutResultat);
+
+
         if (getArguments() != null) {
-            erSpilletVundet = getArguments().getBoolean(ER_SPIL_VUNDET);
-            spilleTid = getArguments().getString(ARG_PARAM2);
+            erSpilletVundet = getArguments().getBoolean(FragmentSpillet.ER_SPIL_VUNDET);
+            spilleTid = getArguments().getString(FragmentSpillet.SPILLE_TID);
         }
         Log.d("fragment_spilslut", "onCreateView");
         Log.d("fragment_spilslut", String.valueOf(erSpilletVundet));
         Log.d("fragment_spilslut", String.valueOf(spilleTid));
 
+        textViewSpilSlutTid.setText("Du brugte " + spilleTid + " sekunder.");
+        if(erSpilletVundet)
+            textViewSpilSlutTid.setText("Tillykke - du gættede ordet!");
+        else
+            textViewSpilSlutTid.setText("Bedre held næste gang!");
 
         return rod;
     }
