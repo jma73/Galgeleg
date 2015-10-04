@@ -12,8 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-//import java.util.Calendar;
-//import java.util.Date;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ForsideActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,19 +33,13 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_forside);
-
-        Log.d("ForsideActivity", "in onCreate! Så vi igen");
-
         setContentView(R.layout.activity_forside2);
-        //setContentView(R.layout.fragment_forside);
 
-        Log.d("ForsideActivity", "in onCreate! vi er videre...");
-
-//        SimpleDateFormat  df = new SimpleDateFormat("dd MM yyyy, HH:mm");
-//        String date = df.format(Calendar.getInstance().getTime());
-//        textViewDateTime = (TextView)findViewById(R.id.textViewDateTime);
-//        String version = "lek4.0";
-//        textViewDateTime.setText(version + ", " + date);
+        SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy, HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        textViewDateTime = (TextView)findViewById(R.id.TextViewHeaderStatus);
+        String version = "lek5.0";
+        textViewDateTime.setText(version + ", " + date);
 //
 //
             buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
@@ -97,35 +92,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
             hentOrdFraWeb();
 
         }
-
-        // dette er indstillinger!!! todo jaman
         if(v == buttonIndstillinger)
         {
-            if(fragmentOrdliste.isAdded()) {
-
-                if (fragmentOrdliste.isHidden()) {
-                    getFragmentManager().beginTransaction()
-                            .show(fragmentOrdliste)
-                            .hide(fragmentSpillet)
-                            .addToBackStack(null)
-                            .commit();
-                } else {
-                    getFragmentManager().beginTransaction()
-                            .hide(fragmentOrdliste)
-                            .show(fragmentSpillet)
-                            .addToBackStack(null)
-                            .commit();
-                }
-            }
-            else {
-
-                //
-                getFragmentManager().beginTransaction()
-                        .add(R.id.fragmentindhold, fragmentOrdliste)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-            }
+            ShowHideIndstillingerFragment();
         }
 
         if(v==buttonForsideLuk)
@@ -137,14 +106,44 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
                     //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(null)
                     .commit();
-
         }
+    }
 
+    private void ShowHideIndstillingerFragment() {
+        if(fragmentOrdliste.isAdded()) {
+
+            if (fragmentOrdliste.isHidden()) {
+                getFragmentManager().beginTransaction()
+                        .show(fragmentOrdliste)
+                        // .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+
+                        .hide(fragmentSpillet)
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                getFragmentManager().beginTransaction()
+                        .hide(fragmentOrdliste)
+                        .show(fragmentSpillet)
+
+                        //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out, android.R.animator.fade_in, android.R.animator.fade_out)
+
+
+                        .addToBackStack(null)
+                        .commit();
+            }
+        }
+        else {
+
+            //
+            getFragmentManager().beginTransaction()
+                    .add(R.id.fragmentindhold, fragmentOrdliste)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     private void startSpilFragmet() {
-
-
         if(fragmentSpillet.isAdded())
         {
             return;
@@ -156,9 +155,8 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, fragmentSpillet)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-
-                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                // .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 
                 .addToBackStack(null)
                 .commit();
