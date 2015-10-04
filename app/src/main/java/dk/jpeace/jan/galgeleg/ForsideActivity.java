@@ -12,9 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 //import java.util.Calendar;
 //import java.util.Date;
 
@@ -28,6 +25,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
     FragmentSpilslut fragmentSpilslut = new FragmentSpilslut();
     private FragmentSpillet fragmentSpillet = new FragmentSpillet();
+    private FragmentOrdliste fragmentOrdliste = new FragmentOrdliste();
     private Button buttonForsideLuk;
 
     @Override
@@ -99,20 +97,22 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
             hentOrdFraWeb();
 
         }
+
+        // dette er indstillinger!!! todo jaman
         if(v == buttonForside)
         {
-            if(fragmentSpilslut.isAdded()) {
+            if(fragmentOrdliste.isAdded()) {
 
 
-                if (fragmentSpilslut.isHidden()) {
+                if (fragmentOrdliste.isHidden()) {
                     getFragmentManager().beginTransaction()
-                            .show(fragmentSpilslut)
+                            .show(fragmentOrdliste)
                             .addToBackStack(null)
                             .commit();
                     return;
                 } else {
                     getFragmentManager().beginTransaction()
-                            .hide(fragmentSpilslut)
+                            .hide(fragmentOrdliste)
                             .addToBackStack(null)
                             .commit();
                     return;
@@ -121,7 +121,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
             //
             getFragmentManager().beginTransaction()
-                    .add(R.id.fragmentindhold, fragmentSpilslut)
+                    .add(R.id.fragmentindhold, fragmentOrdliste)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(null)
                     .commit();
@@ -133,7 +133,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
             Log.d("ForsideActivity", "in onClick! . buttonForsideLuk.");
 
             getFragmentManager().beginTransaction()
-                    .remove(fragmentSpilslut)
+                    .remove(fragmentOrdliste)
                     //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(null)
                     .commit();
