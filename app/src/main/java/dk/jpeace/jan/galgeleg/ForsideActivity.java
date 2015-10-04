@@ -1,5 +1,6 @@
 package dk.jpeace.jan.galgeleg;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,11 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonHentOrdWeb;
     public static final Galgelogik galgelogik = new Galgelogik();
     private TextView textViewDateTime;
+    private Button buttonForside;
+
+    FragmentSpilslut fragmentSpilslut = new FragmentSpilslut();
+    private FragmentSpillet fragmentSpillet = new FragmentSpillet();
+    private Button buttonForsideLuk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,13 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 //
             buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
             buttonStartSpil.setOnClickListener(this);
+            buttonForside = (Button)findViewById(R.id.buttonForside);
+            buttonForside.setOnClickListener(this);
+        buttonForsideLuk = (Button)findViewById(R.id.buttonForsideLuk);
+        buttonForsideLuk.setOnClickListener(this);
+
+
+
 
 //        buttonHentOrdWeb = (Button)findViewById(R.id.buttonHentOrdWeb);
 //        buttonHentOrdWeb.setOnClickListener(this);
@@ -86,18 +99,68 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
             hentOrdFraWeb();
 
         }
+        if(v == buttonForside)
+        {
+            if(fragmentSpilslut.isAdded()) {
+
+
+                if (fragmentSpilslut.isHidden()) {
+                    getFragmentManager().beginTransaction()
+                            .show(fragmentSpilslut)
+                            .addToBackStack(null)
+                            .commit();
+                    return;
+                } else {
+                    getFragmentManager().beginTransaction()
+                            .hide(fragmentSpilslut)
+                            .addToBackStack(null)
+                            .commit();
+                    return;
+                }
+            }
+
+            //
+            getFragmentManager().beginTransaction()
+                    .add(R.id.fragmentindhold, fragmentSpilslut)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+
+        }
+
+        if(v==buttonForsideLuk)
+        {
+            Log.d("ForsideActivity", "in onClick! . buttonForsideLuk.");
+
+            getFragmentManager().beginTransaction()
+                    .remove(fragmentSpilslut)
+                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+
+        }
+
     }
 
     private void startSpilFragmet() {
 
-        FragmentSpillet fragmentSpillet = new FragmentSpillet();
+
+        if(fragmentSpillet.isAdded())
+        {
+            return;
+        }
+
         Bundle argumenter = new Bundle(); // Overfør data til fragmentet
         argumenter.putString("velkomst", "\n\nGod fornøjelse med Galgeleg!");
         fragmentSpillet.setArguments(argumenter);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, fragmentSpillet)
-                // .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+
+                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+
+                .addToBackStack(null)
                 .commit();
     }
 
