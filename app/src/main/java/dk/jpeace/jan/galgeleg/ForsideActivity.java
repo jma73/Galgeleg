@@ -21,7 +21,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonHentOrdWeb;
     public static final Galgelogik galgelogik = new Galgelogik();
     private TextView textViewDateTime;
-    private Button buttonForside;
+    private Button buttonIndstillinger;
 
     FragmentSpilslut fragmentSpilslut = new FragmentSpilslut();
     private FragmentSpillet fragmentSpillet = new FragmentSpillet();
@@ -49,8 +49,8 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 //
             buttonStartSpil = (Button)findViewById(R.id.buttonStartSpil);
             buttonStartSpil.setOnClickListener(this);
-            buttonForside = (Button)findViewById(R.id.buttonForside);
-            buttonForside.setOnClickListener(this);
+            buttonIndstillinger = (Button)findViewById(R.id.buttonForside);
+            buttonIndstillinger.setOnClickListener(this);
         buttonForsideLuk = (Button)findViewById(R.id.buttonForsideLuk);
         buttonForsideLuk.setOnClickListener(this);
 
@@ -99,33 +99,33 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         // dette er indstillinger!!! todo jaman
-        if(v == buttonForside)
+        if(v == buttonIndstillinger)
         {
             if(fragmentOrdliste.isAdded()) {
-
 
                 if (fragmentOrdliste.isHidden()) {
                     getFragmentManager().beginTransaction()
                             .show(fragmentOrdliste)
+                            .hide(fragmentSpillet)
                             .addToBackStack(null)
                             .commit();
-                    return;
                 } else {
                     getFragmentManager().beginTransaction()
                             .hide(fragmentOrdliste)
+                            .show(fragmentSpillet)
                             .addToBackStack(null)
                             .commit();
-                    return;
                 }
             }
+            else {
 
-            //
-            getFragmentManager().beginTransaction()
-                    .add(R.id.fragmentindhold, fragmentOrdliste)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
-
+                //
+                getFragmentManager().beginTransaction()
+                        .add(R.id.fragmentindhold, fragmentOrdliste)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
         }
 
         if(v==buttonForsideLuk)
