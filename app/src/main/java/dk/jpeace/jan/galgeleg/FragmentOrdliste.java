@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -31,7 +32,15 @@ public class FragmentOrdliste extends Fragment implements AdapterView.OnItemClic
         ListView listView = (ListView) rod.findViewById(R.id.listViewOrdliste);
         listView.setOnItemClickListener(this);
         listView.setAdapter(new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, ForsideActivity.galgelogik.muligeOrd()));
+
+        ShowMuligeOrdCount(rod);
         return rod;
+    }
+
+    private void ShowMuligeOrdCount(View rod) {
+        int antalOrd = ForsideActivity.galgelogik.muligeOrd().size();
+        TextView textViewListId = (TextView) rod.findViewById(R.id.textViewListId);
+        textViewListId.setText("" + antalOrd);
     }
 
 

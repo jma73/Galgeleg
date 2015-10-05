@@ -4,4 +4,10 @@
     tools:context="dk.jpeace.jan.galgeleg.ForsideActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_ordliste" android:title="Ordliste"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_hendordfraweb" android:title="Hent flere ord"
+        android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>

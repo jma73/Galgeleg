@@ -62,6 +62,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_forside, menu);
+
         return true;
     }
 
@@ -71,6 +72,19 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        Log.d("forsideAct", "Menu :: Du trykkede på id="+id);
+
+        if (id == R.id.action_ordliste) {
+            Log.d("forsideAct", "Valget svarer til R.id.action_ordliste ...Du trykkede på id=" + id);
+        }
+
+        if (id == R.id.action_hendordfraweb) {
+            Log.d("forsideAct", "Valget svarer til R.id.action_hendordfraweb ...Du trykkede på id=" + id);
+
+            hentOrdFraWeb();
+        }
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -83,6 +97,12 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         Log.d("ForsideActivity", "in onClick!");
+        int id = v.getId();
+        Log.d("ForsideActivity", "in onClick! view id=" + id);
+
+        String IdAsString = GenerelUtilities.getResourceName(v);
+        Log.d("ForsideActivity", "in onClick! view id=" + IdAsString);
+
         if(v == buttonStartSpil)
             startSpilFragmet();
             // startSpilAct();
@@ -108,6 +128,8 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
                     .commit();
         }
     }
+
+
 
     private void ShowHideIndstillingerFragment() {
         if(fragmentOrdliste.isAdded()) {
