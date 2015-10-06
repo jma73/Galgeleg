@@ -141,6 +141,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         if(fragmentOrdliste.isAdded()) {
 
             if (fragmentOrdliste.isHidden()) {
+
+                Log.d("ForsideActivity", "fragmentOrdliste.isHidden true");
+
                 getFragmentManager().beginTransaction()
                         .show(fragmentOrdliste)
                         // .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -150,6 +153,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
                         .commit();
             } else {
+
+                Log.d("ForsideActivity", "fragmentOrdliste.isHidden false");
+
                 getFragmentManager().beginTransaction()
                         .hide(fragmentOrdliste)
                         .show(fragmentSpillet)
@@ -163,11 +169,20 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         }
         else {
 
+            if(fragmentSpillet.isHidden())
+            {
+                Log.d("ForsideActivity", "fragmentSpillet.isHidden true");
+            }
+            else
+            {
+                Log.d("ForsideActivity", "fragmentSpillet.isHidden false");
+            }
+
             //
             getFragmentManager().beginTransaction()
                     .add(R.id.fragmentindhold, fragmentOrdliste)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)       // note jan: umiddelbart kan jeg ikke se nogen forskel...
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)       // note jan: umiddelbart kan jeg ikke se nogen forskel...
+                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .hide(fragmentSpillet)  // todo jan - just added... 5/10-2015.
                     .addToBackStack(null)
                     .commit();
@@ -175,9 +190,23 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void startSpilFragmet() {
+
         if(fragmentSpillet.isAdded())
         {
+            getFragmentManager().beginTransaction()
+                    .hide(fragmentOrdliste)
+                    .show(fragmentSpillet)
+                    .addToBackStack(null)
+                    .commit();
             return;
+        }
+        if(fragmentOrdliste.isAdded())
+        {
+            getFragmentManager().beginTransaction()
+                    .hide(fragmentOrdliste)
+                    //.show(fragmentSpillet)
+                    //.addToBackStack(null)
+                    .commit();
         }
 
         Bundle argumenter = new Bundle(); // Overfør data til fragmentet

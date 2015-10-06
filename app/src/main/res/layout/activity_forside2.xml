@@ -30,7 +30,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Luk testside"
+            android:text="Luk indst."
+
             android:id="@+id/buttonForsideLuk"
             android:layout_gravity="center_horizontal|right" />
 </LinearLayout>
@@ -40,7 +41,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#31904f"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#88908331"
+            android:text="Hva' skal der stå her? Men dette er så FrameLayout i Aktiviteten activity_forside2.
+            Hvis du ikke ved hvad du skal gøre - så start spillet!\n
+            Eller måske gå i menuen og vælg det ord du vil ''gætte''
+            Eller hent flere ord.
+            "/>
+
+        </FrameLayout>
 
 
 

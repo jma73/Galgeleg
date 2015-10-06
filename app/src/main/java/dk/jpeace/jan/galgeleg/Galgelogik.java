@@ -34,6 +34,15 @@ public class Galgelogik {
         return ordet;
     }
 
+    /**
+     * Tilføjet Jan. Lektion 5 for at kunne sætte ordet fra App.
+     */
+//    public void setOrdet(String nytOrd) {
+//        ordet = nytOrd;
+//        opdaterSynligtOrd();
+//    }
+
+
     public int getAntalForkerteBogstaver() {
         return antalForkerteBogstaver;
     }
@@ -75,6 +84,16 @@ public class Galgelogik {
         spilletErVundet = false;
         spilletErTabt = false;
         ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+        opdaterSynligtOrd();
+    }
+
+    public void nulstilMedSelvalgtOrd(String nytOrd) {
+        brugteBogstaver.clear();
+        antalForkerteBogstaver = 0;
+        spilletErVundet = false;
+        spilletErTabt = false;
+        //ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+        ordet = nytOrd;
         opdaterSynligtOrd();
     }
 
