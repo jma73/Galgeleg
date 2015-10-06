@@ -77,6 +77,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
         if (id == R.id.action_ordliste) {
             Log.d("forsideAct", "Valget svarer til R.id.action_ordliste ...Du trykkede på id=" + id);
+
+            ShowHideIndstillingerFragment();
+
         }
 
         if (id == R.id.action_hendordfraweb) {
@@ -99,7 +102,6 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
         Log.d("ForsideActivity", "in onClick!");
         int id = v.getId();
         Log.d("ForsideActivity", "in onClick! view id=" + id);
-
         String IdAsString = GenerelUtilities.getResourceName(v);
         Log.d("ForsideActivity", "in onClick! view id=" + IdAsString);
 
@@ -123,7 +125,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
             getFragmentManager().beginTransaction()
                     .remove(fragmentOrdliste)
-                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                     .addToBackStack(null)
                     .commit();
         }
@@ -131,6 +133,10 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+    /*
+    * Burde hedde noget med Ordliste. ListView Ordliste.
+    *
+     */
     private void ShowHideIndstillingerFragment() {
         if(fragmentOrdliste.isAdded()) {
 
@@ -141,6 +147,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
                         .hide(fragmentSpillet)
                         .addToBackStack(null)
+
                         .commit();
             } else {
                 getFragmentManager().beginTransaction()
@@ -159,7 +166,9 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
             //
             getFragmentManager().beginTransaction()
                     .add(R.id.fragmentindhold, fragmentOrdliste)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)       // note jan: umiddelbart kan jeg ikke se nogen forskel...
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .hide(fragmentSpillet)  // todo jan - just added... 5/10-2015.
                     .addToBackStack(null)
                     .commit();
         }
@@ -177,7 +186,7 @@ public class ForsideActivity extends AppCompatActivity implements View.OnClickLi
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentindhold, fragmentSpillet)
-                // .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                // .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)   // tester med FragmentTransaction.
                 //.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 
                 .addToBackStack(null)
